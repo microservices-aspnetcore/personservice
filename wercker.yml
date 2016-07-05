@@ -3,22 +3,22 @@ no-response-timeout: 10
 build:
   steps: 
     - script:
-        cwd: src/StatlerWaldorfCorp.PersonService
+        cwd: src/StatlerWaldorfCorp.PeopleService
         name: restore
         code: |
           dotnet restore
     - script:
-        cwd: src/StatlerWaldorfCorp.PersonService    
+        cwd: src/StatlerWaldorfCorp.PeopleService    
         name: build
         code: |
           dotnet build
     - script:
-        cwd: src/StatlerWaldorfCorp.PersonService
+        cwd: src/StatlerWaldorfCorp.PeopleService
         name: publish
         code: |
           dotnet publish -o publish	 
     - script:
-        cwd: src/StatlerWaldorfCorp.PersonService
+        cwd: src/StatlerWaldorfCorp.PeopleService
         name: copy binary
         code: |
           cp -r . $WERCKER_OUTPUT_DIR/app 
