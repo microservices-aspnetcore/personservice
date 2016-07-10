@@ -16,7 +16,22 @@ build:
         cwd: src/StatlerWaldorfCorp.PeopleService
         name: publish
         code: |
-          dotnet publish -o publish	 
+          dotnet publish -o publish	
+    - script:
+        name: test-restore
+        cwd: test/StatlerWaldorfCorp.PeopleService.Tests
+        code: |
+           dotnet restore
+    - script:
+        name: test-build
+        cwd: test/StatlerWaldorfCorp.PeopleService.Tests
+        code: |
+          dotnet build
+    - script:
+        name: test-run
+        cwd: test/StatlerWaldorfCorp.PeopleService.Tests
+        code: |
+          dotnet test           
     - script:
         cwd: src/StatlerWaldorfCorp.PeopleService
         name: copy binary
