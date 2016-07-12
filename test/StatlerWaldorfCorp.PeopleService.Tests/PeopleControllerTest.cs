@@ -43,7 +43,17 @@ namespace StatlerWaldorfCorp.PeopleService
 
             await controller.CreatePerson(newPerson);
             Person testPerson = (Person)(await controller.GetPerson(testPersonID) as ObjectResult).Value;
-            
+            Assert.Equal(testPerson.ID, testPersonID);            
         }        
+
+        [Fact]
+        public async void GetPersonForNonexistantPersonReturnsNotFound() 
+        {
+            IPeopleRepository repository = new MemoryPeopleRepository();
+            PeopleController controller = new PeopleController(repository);
+           
+            var result = await controller.GetPerson(Guid.NewGuid());
+            Assert.True(result is NotFoundResult);
+        }            
     }
 }
