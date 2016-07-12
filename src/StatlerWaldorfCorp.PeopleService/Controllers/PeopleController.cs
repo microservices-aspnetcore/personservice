@@ -20,6 +20,12 @@ namespace StatlerWaldorfCorp.PeopleService
 			return this.Ok("person");
 		}
 
+		[HttpGet]
+        public async virtual Task<IActionResult> GetPerson(Guid id)
+		{
+			return this.Ok(_repository.GetPerson(id));
+		}		
+
 		public async virtual Task<IActionResult> CreatePerson([FromBody]Person newPerson) 
 		{
 			newPerson = _repository.AddPerson(newPerson);
